@@ -1,3 +1,66 @@
+<!-- quikgraph-injected -->
+# Quikgraph Integration
+
+Quikgraph provides semantic code search and analysis. **Prefer CLI commands over MCP** — they're faster and provide richer output.
+
+## Quick Reference
+
+Use `qg` (short alias) instead of `quikgraph` for all commands.
+
+### Smart Query (Auto Intent Detection)
+
+| Need | Command |
+|------|---------|
+| Let Quikgraph decide query type | `qg query "your question" --agent` |
+
+### Semantic Search (Use Instead of Grep/Glob)
+
+| Need | Command |
+|------|---------|
+| Search code by meaning | `qg search "query" --code --agent` |
+| Search docs/markdown | `qg search "query" --docs --agent` |
+| Search by language | `qg search "query" --lang rust --agent` |
+
+### Graph Analysis (Code Structure)
+
+| Need | Command |
+|------|---------|
+| Who calls this function | `qg graph callers <symbol>` |
+| What does this call | `qg graph callees <symbol>` |
+| All references to symbol | `qg graph refs <symbol>` |
+| Dependencies of symbol | `qg graph deps <symbol>` |
+| What depends on this | `qg graph dependents <symbol>` |
+| Path between symbols | `qg graph path <from> <to>` |
+
+### Impact & Risk Analysis
+
+| Need | Command |
+|------|---------|
+| Impact of uncommitted changes | `qg impact` |
+| Full PR impact analysis | `qg impact-analyze --base main` |
+| Which tests to run | `qg suggest-tests --base main` |
+
+### Index Management
+
+| Need | Command |
+|------|---------|
+| Check index status | `qg status` |
+| Start/attach daemon | `qg watch .` |
+| Health check | `qg doctor` |
+
+## When to Use Quikgraph vs Built-in Tools
+
+**Use `qg search --agent`** for: natural language queries, concept searches, finding code by behavior
+**Use Grep** for: literal strings, exact regex patterns, known symbol names
+**Use `qg graph`** for: callers, callees, dependencies, paths between symbols
+
+## Important Notes
+
+- **Always use `--agent` flag** for search/query — returns JSON optimized for LLMs
+- **If Quikgraph not indexed**: Fall back to Grep/Glob
+
+---
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
